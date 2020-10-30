@@ -31,12 +31,12 @@ let interval        = null;
 let dragIdx         = -1;
 
 function reset() {
-    startBtn.removeAttribute('disabled');
-    selector.removeAttribute('disabled');
-    checkTrace.removeAttribute('disabled');
-    checkLine.removeAttribute('disabled');
-    checkPoint.removeAttribute('disabled');
-    rangeInp.removeAttribute('disabled');
+    startBtn.removeAttribute(   'disabled' );
+    selector.removeAttribute(   'disabled' );
+    checkTrace.removeAttribute( 'disabled' );
+    checkLine.removeAttribute(  'disabled' );
+    checkPoint.removeAttribute( 'disabled' );
+    rangeInp.removeAttribute(   'disabled' );
     clearInterval(interval);
 
     movePercentage  = 0;
@@ -46,7 +46,7 @@ function reset() {
     cubicPoints     = [];
     bezierPoints    = [];
 
-    framePointsLocations.forEach( (p, idx) => {
+    framePointsLocations.forEach( (p) => {
         framePoints.push({ x: p.x, y: p.y });
         linearPoints.push({ x: p.x, y: p.y });
         quadraticPoints.push({ x: p.x, y: p.y });
@@ -68,12 +68,12 @@ function reset() {
 }
 
 function start() {
-    startBtn.setAttribute('disabled', '');
-    selector.setAttribute('disabled', '');
-    checkTrace.setAttribute('disabled', '');
-    checkLine.setAttribute('disabled', '');
-    checkPoint.setAttribute('disabled', '');
-    rangeInp.setAttribute('disabled', '');
+    startBtn.setAttribute(   'disabled', '');
+    selector.setAttribute(   'disabled', '');
+    checkTrace.setAttribute( 'disabled', '');
+    checkLine.setAttribute(  'disabled', '');
+    checkPoint.setAttribute( 'disabled', '');
+    rangeInp.setAttribute(   'disabled', '');
 
     interval = setInterval(() => {
         setNextPointPosition();
