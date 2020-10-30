@@ -39,21 +39,22 @@ function renderCanvas() {
         createPoint(point, 'blue');
     }
 
-    for (let i = 0; i < Number(selector.value); i++) {
-        createPoint(linearPoints[i], 'red');
+    const selectorValue = Number(selector.value);
+    for (let i = 0; i < selectorValue; i++) {
+        if (checkPoint.checked) { createPoint(linearPoints[i], 'red'); }
         if (i > 0) {
             if (checkLine.checked) { drawLine(linearPoints[i - 1], linearPoints[i], 'red'); }
         }
     }
 
-    for (let i = 0; i < (Number(selector.value) - 1); i++) {
-        createPoint(quadraticPoints[i], 'green');
+    for (let i = 0; i < (selectorValue - 1); i++) {
+        if (checkPoint.checked || selectorValue === 2) { createPoint(quadraticPoints[i], 'green'); }
         if (i > 0) {
             if (checkLine.checked) { drawLine(quadraticPoints[i - 1], quadraticPoints[i], 'green'); }
         }
     }
 
-    for (let i = 0; i < (Number(selector.value) - 2); i++) {
+    for (let i = 0; i < (selectorValue - 2); i++) {
         createPoint(cubicPoints[i], 'black');
         if (i > 0) {
             drawLine(cubicPoints[i - 1], cubicPoints[i], 'black');

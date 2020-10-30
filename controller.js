@@ -1,6 +1,7 @@
 const selector   = document.querySelector('#version-selection');
 const checkTrace = document.querySelector('#trace-check');
 const checkLine  = document.querySelector('#line-check');
+const checkPoint = document.querySelector('#point-check');
 const rangeInp   = document.querySelector('#range-state');
 const startBtn   = document.querySelector('#btn-start');
 const resetBtn   = document.querySelector('#btn-reset');
@@ -9,6 +10,7 @@ startBtn.onclick    = () => start();
 resetBtn.onclick    = () => reset();
 checkTrace.onchange = () => renderCanvas();
 checkLine.onchange  = () => renderCanvas();
+checkPoint.onchange = () => renderCanvas();
 rangeInp.oninput    = () => { movePercentage = rangeInp.value; setNextPointPosition(); renderCanvas(); };
 
 const framePointsLocations = [
@@ -33,6 +35,7 @@ function reset() {
     selector.removeAttribute('disabled');
     checkTrace.removeAttribute('disabled');
     checkLine.removeAttribute('disabled');
+    checkPoint.removeAttribute('disabled');
     rangeInp.removeAttribute('disabled');
     clearInterval(interval);
 
@@ -69,6 +72,7 @@ function start() {
     selector.setAttribute('disabled', '');
     checkTrace.setAttribute('disabled', '');
     checkLine.setAttribute('disabled', '');
+    checkPoint.setAttribute('disabled', '');
     rangeInp.setAttribute('disabled', '');
 
     interval = setInterval(() => {
