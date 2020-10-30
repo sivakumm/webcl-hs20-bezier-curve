@@ -41,7 +41,7 @@ function renderCanvas() {
 
     const selectorValue = Number(selector.value);
     for (let i = 0; i < selectorValue; i++) {
-        if (checkPoint.checked) { createPoint(linearPoints[i], 'red'); }
+        if (checkPoint.checked || selectorValue == 1) { createPoint(linearPoints[i], 'red'); }
         if (i > 0) {
             if (checkLine.checked) { drawLine(linearPoints[i - 1], linearPoints[i], 'red'); }
         }
