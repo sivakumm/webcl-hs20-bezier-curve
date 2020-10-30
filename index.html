@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bezier Kurve</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        input {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col">
+                <canvas></canvas>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <label for="version-selection"> Variante: </label>
+            </div>
+            <div class="col">
+                <select id="version-selection" class="form-control">
+                    <option value="1"> Linear      </option>
+                    <option value="2"> Quadratisch </option>
+                    <option value="3"> Kubisch     </option>
+                </select>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <label for="trace-check"> Spur zeichnen: </label>
+            </div>
+            <div class="col">
+                <input id="trace-check" class="form-check-input" type="checkbox" />
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <label for="line-check"> Hilfslinien zeichnen: </label>
+            </div>
+            <div class="col">
+                <input id="line-check" class="form-check-input" type="checkbox" checked />
+            </div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col">
+                <hr />
+            </div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col">
+                <input id="range-state" class="form-control-range" type="range" min="0" max="1" step="0.01" value="0" />
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <button id="btn-start" class="btn btn-primary">Start</button>
+                    </div>
+                    <div class="col">
+                        <button id="btn-reset" class="btn btn-primary">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="drawer.js"></script>
+    <script src="controller.js"></script>
+    <script>
+        reset();
+    </script>
+</body>
+</html>
