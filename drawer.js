@@ -1,6 +1,6 @@
 const canvas = document.querySelector('canvas');
 canvas.style.border = '2px black solid';
-canvas.width = document.querySelector('.col').offsetWidth;
+canvas.width = document.querySelector('.col').offsetWidth * 0.97;
 canvas.height = 600;
 
 const ctx = canvas.getContext('2d');
