@@ -4,9 +4,13 @@ const checkLine  = document.querySelector('#line-check');
 const checkPoint = document.querySelector('#point-check');
 const rangeInp   = document.querySelector('#range-state');
 const startBtn   = document.querySelector('#btn-start');
+const pauseBtn   = document.querySelector('#btn-pause');
+const roundBtn   = document.querySelector('#btn-round');
 const resetBtn   = document.querySelector('#btn-reset');
 
 startBtn.onclick    = () => start();
+pauseBtn.onclick    = () => pause();
+roundBtn.onclick    = () => start();
 resetBtn.onclick    = () => reset();
 checkTrace.onchange = () => renderCanvas();
 checkLine.onchange  = () => renderCanvas();
@@ -74,10 +78,24 @@ function start() {
     checkPoint.setAttribute( 'disabled', '');
     rangeInp.setAttribute(   'disabled', '');
 
+    pauseBtn.removeAttribute('disabled');
+
+    if (1 - movePercentage < 0.01) { movePercentage = 0; }
     interval = setInterval(() => {
         setNextPointPosition();
         renderCanvas();
     }, 10);
+}
+
+function pause() {
+    pauseBtn.setAttribute(      'disabled', '');
+    startBtn.removeAttribute(   'disabled');
+    selector.removeAttribute(   'disabled');
+    checkTrace.removeAttribute( 'disabled');
+    checkLine.removeAttribute(  'disabled');
+    checkPoint.removeAttribute( 'disabled');
+    rangeInp.removeAttribute(   'disabled');
+    clearInterval(interval);
 }
 
 function setNextPointPosition() {
@@ -91,7 +109,7 @@ function setNextPointPosition() {
             rangeInp.value = movePercentage;
         }
     } else {
-        clearInterval(interval);
+        pause();
     }
 }
 
