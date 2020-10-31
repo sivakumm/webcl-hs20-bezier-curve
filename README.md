@@ -56,5 +56,5 @@ Alle Punkte starten bei `t = 0` bei ihren Startpunkten und sind am Ziel bei `t =
 
 
 ## Rechte
-Dieses Tool benutzt Icons von [Font Awesome](https://fontawesome.com) für Buttons und ein SVG von [Free SVG](https://freesvg.org/) als Favicon. \
+Dieses Tool benutzt Icons von [Font Awesome](https://fontawesome.com) für Buttons und ein Favicon von [Free SVG](https://freesvg.org/). \
 ![CC BY-SA](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg) Mithusan Sivakumar, FHNW
