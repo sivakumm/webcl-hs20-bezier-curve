@@ -13,6 +13,7 @@ checkLine.onchange  = () => renderCanvas();
 checkPoint.onchange = () => renderCanvas();
 rangeInp.oninput    = () => { movePercentage = rangeInp.value; setNextPointPosition(); renderCanvas(); };
 
+// initial fix points
 const framePointsLocations = [
     { x: 100, y: 250 },
     { x: 400, y: 50 },
@@ -24,7 +25,6 @@ let framePoints     = [];
 let linearPoints    = [];
 let quadraticPoints = [];
 let cubicPoints     = [];
-let bezierPoints    = [];
 
 let movePercentage  = 0;
 let interval        = null;
@@ -44,13 +44,12 @@ function reset() {
     linearPoints    = [];
     quadraticPoints = [];
     cubicPoints     = [];
-    bezierPoints    = [];
 
     framePointsLocations.forEach( (p) => {
-        framePoints.push({ x: p.x, y: p.y });
-        linearPoints.push({ x: p.x, y: p.y });
-        quadraticPoints.push({ x: p.x, y: p.y });
-        cubicPoints.push({ x: p.x, y: p.y });
+        framePoints.push(     { x: p.x, y: p.y } );
+        linearPoints.push(    { x: p.x, y: p.y } );
+        quadraticPoints.push( { x: p.x, y: p.y } );
+        cubicPoints.push(     { x: p.x, y: p.y } );
     });
     linearPoints.pop();
     quadraticPoints.pop();
@@ -86,7 +85,6 @@ function setNextPointPosition() {
         calculateNextPosition(linearPoints, framePoints);
         calculateNextPosition(quadraticPoints, linearPoints);
         calculateNextPosition(cubicPoints, quadraticPoints);
-        bezierPoints.push(cubicPoints[0]);
 
         movePercentage += 0.003;
         rangeInp.value = movePercentage;
