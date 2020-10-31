@@ -16,6 +16,7 @@ checkTrace.onchange = () => renderCanvas();
 checkLine.onchange  = () => renderCanvas();
 checkPoint.onchange = () => renderCanvas();
 rangeInp.oninput    = () => { movePercentage = Number(rangeInp.value); setNextPointPosition(); renderCanvas(); };
+selector.onchange   = () => renderCanvas();
 
 // initial fix points
 const framePointsLocations = [
