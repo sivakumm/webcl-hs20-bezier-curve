@@ -49,17 +49,18 @@ function renderCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    for(let i = 1; i < framePoints.length; i++) {
+    const selectorValue = Number(selector.value);
+
+    for(let i = 1; i < (selectorValue + 1); i++) {
         const prev = framePoints[i - 1];
         const curr = framePoints[i];
         if (checkLine.checked) { drawLine(prev, curr, FRAMELINE_COLOR); }
     }
-    
-    for (const point of framePoints) {
-        drawPoint(point, FRAMEPOINT_COLOR);
+
+    for(let i = 0; i < (selectorValue + 1); i++) {
+        drawPoint(framePoints[i], FRAMEPOINT_COLOR);
     }
 
-    const selectorValue = Number(selector.value);
     for (let i = 0; i < selectorValue; i++) {
         let drawColor = FIRST_COLOR;
         if (selectorValue === 1) { drawColor = BEZIER_COLOR; }
