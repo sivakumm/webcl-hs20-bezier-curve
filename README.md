@@ -6,7 +6,10 @@ was Bezier Kurven sind und in welcher Art diese anzutreffen sind in der Web-Umge
 Erklärung habe ich dieses schlichte Tool bestehend aus HTML & JavaScript Dateien erstellt. Diese Veranschaulichung 
 dient lediglich für die linearen, quadratischen  und kubischen Bezier Kurven.
 
-## Setup
+## Try it out
+Das Tool ist online erreichbar unter [https://sivakumm.github.io/webcl-hs20-bezier-curve](https://sivakumm.github.io/webcl-hs20-bezier-curve).
+
+## Lokales Setup
 Um das Tool zu starten, muss lediglich zuerst das Repository gecloned oder heruntergeladen werden.
 ```git
 $ git clone https://github.com/sivakumm/webcl-hs20-bezier-curve.git
