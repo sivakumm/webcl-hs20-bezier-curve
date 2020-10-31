@@ -3,6 +3,8 @@ canvas.style.border = '2px black solid';
 canvas.width = document.querySelector('.col').offsetWidth * 0.97;
 canvas.height = 600;
 
+window.onresize = () => { canvas.width = document.querySelector('.col').offsetWidth * 0.97; renderCanvas(); }
+
 const ctx = canvas.getContext('2d');
 ctx.lineWidth = 2;
 
