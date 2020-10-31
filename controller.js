@@ -11,7 +11,7 @@ resetBtn.onclick    = () => reset();
 checkTrace.onchange = () => renderCanvas();
 checkLine.onchange  = () => renderCanvas();
 checkPoint.onchange = () => renderCanvas();
-rangeInp.oninput    = () => { movePercentage = rangeInp.value; setNextPointPosition(); renderCanvas(); };
+rangeInp.oninput    = () => { movePercentage = Number(rangeInp.value); setNextPointPosition(); renderCanvas(); };
 
 // initial fix points
 const framePointsLocations = [
@@ -87,7 +87,9 @@ function setNextPointPosition() {
         calculateNextPosition(cubicPoints, quadraticPoints);
 
         movePercentage += 0.003;
-        rangeInp.value = movePercentage;
+        if (rangeInp.hasAttribute('disabled')) {
+            rangeInp.value = movePercentage;
+        }
     } else {
         clearInterval(interval);
     }
