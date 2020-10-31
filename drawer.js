@@ -32,6 +32,18 @@ function drawLine(origin, destination, color) {
     ctx.closePath();
 }
 
+function drawPercentage() {
+    ctx.beginPath();
+    ctx.globalAlpha = 0.2;
+    ctx.fillStyle = 'grey'
+    ctx.fillRect(10, 10, 130, 45);
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = 'black';
+    ctx.font = '30px Arial';
+    ctx.fillText("t = " + movePercentage.toFixed(2), 25, 42);
+    ctx.closePath();
+}
+
 function renderCanvas() {
     if (!checkTrace.checked) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -75,6 +87,8 @@ function renderCanvas() {
             drawLine(cubicPoints[i - 1], cubicPoints[i], BEZIER_COLOR);
         }
     }
+
+    drawPercentage();
 }
 
 canvas.addEventListener('mousedown', evt => mouseDownEvent(evt, canvas.getBoundingClientRect()));
