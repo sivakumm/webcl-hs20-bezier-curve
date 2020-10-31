@@ -3,6 +3,12 @@ canvas.style.border = '2px black solid';
 canvas.width = document.querySelector('.col').offsetWidth * 0.97;
 canvas.height = 600;
 
+const BEZIER_COLOR     = 'red';
+const FRAMEPOINT_COLOR = 'black'
+const FRAMELINE_COLOR  = 'grey';
+const FIRST_COLOR      = 'green';
+const SECOND_COLOR     = 'blue'
+
 window.onresize = () => { canvas.width = document.querySelector('.col').offsetWidth * 0.97; renderCanvas(); }
 
 const ctx = canvas.getContext('2d');
@@ -34,32 +40,39 @@ function renderCanvas() {
     for(let i = 1; i < framePoints.length; i++) {
         const prev = framePoints[i - 1];
         const curr = framePoints[i];
-        if (checkLine.checked) { drawLine(prev, curr, 'black'); }
+        if (checkLine.checked) { drawLine(prev, curr, FRAMELINE_COLOR); }
     }
     
     for (const point of framePoints) {
-        createPoint(point, 'blue');
+        createPoint(point, FRAMEPOINT_COLOR);
     }
 
     const selectorValue = Number(selector.value);
     for (let i = 0; i < selectorValue; i++) {
-        if (checkPoint.checked || selectorValue == 1) { createPoint(linearPoints[i], 'red'); }
+        let drawColor = FIRST_COLOR;
+        if (selectorValue === 1) { drawColor = BEZIER_COLOR; }
+
+        if (checkPoint.checked || selectorValue === 1) { createPoint(linearPoints[i], drawColor); }
+
         if (i > 0) {
-            if (checkLine.checked) { drawLine(linearPoints[i - 1], linearPoints[i], 'red'); }
+            if (checkLine.checked) { drawLine(linearPoints[i - 1], linearPoints[i], drawColor); }
         }
     }
 
     for (let i = 0; i < (selectorValue - 1); i++) {
-        if (checkPoint.checked || selectorValue === 2) { createPoint(quadraticPoints[i], 'green'); }
+        let drawColor = SECOND_COLOR;
+        if (selectorValue === 2) { drawColor = BEZIER_COLOR; }
+
+        if (checkPoint.checked || selectorValue === 2) { createPoint(quadraticPoints[i], drawColor); }
         if (i > 0) {
-            if (checkLine.checked) { drawLine(quadraticPoints[i - 1], quadraticPoints[i], 'green'); }
+            if (checkLine.checked) { drawLine(quadraticPoints[i - 1], quadraticPoints[i], drawColor); }
         }
     }
 
     for (let i = 0; i < (selectorValue - 2); i++) {
-        createPoint(cubicPoints[i], 'black');
+        createPoint(cubicPoints[i], BEZIER_COLOR);
         if (i > 0) {
-            drawLine(cubicPoints[i - 1], cubicPoints[i], 'black');
+            drawLine(cubicPoints[i - 1], cubicPoints[i], BEZIER_COLOR);
         }
     }
 }
