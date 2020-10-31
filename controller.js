@@ -10,7 +10,7 @@ const resetBtn   = document.querySelector('#btn-reset');
 
 startBtn.onclick    = () => start();
 pauseBtn.onclick    = () => pause();
-roundBtn.onclick    = () => start();
+roundBtn.onclick    = () => { autoRestart = true; start(); }
 resetBtn.onclick    = () => reset();
 checkTrace.onchange = () => renderCanvas();
 checkLine.onchange  = () => renderCanvas();
@@ -33,16 +33,22 @@ let cubicPoints     = [];
 let movePercentage  = 0;
 let interval        = null;
 let dragIdx         = -1;
+let autoRestart     = false;
 
 function reset() {
     startBtn.removeAttribute(   'disabled' );
+    roundBtn.removeAttribute(   'disabled' );
     selector.removeAttribute(   'disabled' );
     checkTrace.removeAttribute( 'disabled' );
     checkLine.removeAttribute(  'disabled' );
     checkPoint.removeAttribute( 'disabled' );
     rangeInp.removeAttribute(   'disabled' );
+
+    pauseBtn.setAttribute(      'disabled', '');
+
     clearInterval(interval);
 
+    autoRestart     = false;
     movePercentage  = 0;
     framePoints     = [];
     linearPoints    = [];
@@ -72,6 +78,7 @@ function reset() {
 
 function start() {
     startBtn.setAttribute(   'disabled', '');
+    roundBtn.setAttribute(   'disabled', '');
     selector.setAttribute(   'disabled', '');
     checkTrace.setAttribute( 'disabled', '');
     checkLine.setAttribute(  'disabled', '');
@@ -80,7 +87,7 @@ function start() {
 
     pauseBtn.removeAttribute('disabled');
 
-    if (1 - movePercentage < 0.01) { movePercentage = 0; }
+    if ( (1 - movePercentage) < 0.01) { movePercentage = 0; }
     interval = setInterval(() => {
         setNextPointPosition();
         renderCanvas();
@@ -90,12 +97,14 @@ function start() {
 function pause() {
     pauseBtn.setAttribute(      'disabled', '');
     startBtn.removeAttribute(   'disabled');
+    roundBtn.removeAttribute(   'disabled');
     selector.removeAttribute(   'disabled');
     checkTrace.removeAttribute( 'disabled');
     checkLine.removeAttribute(  'disabled');
     checkPoint.removeAttribute( 'disabled');
     rangeInp.removeAttribute(   'disabled');
     clearInterval(interval);
+    autoRestart = false;
 }
 
 function setNextPointPosition() {
@@ -109,7 +118,7 @@ function setNextPointPosition() {
             rangeInp.value = movePercentage;
         }
     } else {
-        pause();
+        autoRestart ? movePercentage = 0 : pause();
     }
 }
 
