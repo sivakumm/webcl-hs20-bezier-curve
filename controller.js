@@ -36,15 +36,7 @@ let dragIdx         = -1;
 let autoRestart     = false;
 
 function reset() {
-    startBtn.removeAttribute(   'disabled' );
-    roundBtn.removeAttribute(   'disabled' );
-    selector.removeAttribute(   'disabled' );
-    checkTrace.removeAttribute( 'disabled' );
-    checkLine.removeAttribute(  'disabled' );
-    checkPoint.removeAttribute( 'disabled' );
-    rangeInp.removeAttribute(   'disabled' );
-
-    pauseBtn.setAttribute(      'disabled', '');
+    flipDisabledState(true);
 
     clearInterval(interval);
 
@@ -77,15 +69,7 @@ function reset() {
 }
 
 function start() {
-    startBtn.setAttribute(   'disabled', '');
-    roundBtn.setAttribute(   'disabled', '');
-    selector.setAttribute(   'disabled', '');
-    checkTrace.setAttribute( 'disabled', '');
-    checkLine.setAttribute(  'disabled', '');
-    checkPoint.setAttribute( 'disabled', '');
-    rangeInp.setAttribute(   'disabled', '');
-
-    pauseBtn.removeAttribute('disabled');
+    flipDisabledState();
 
     if ( (1 - movePercentage) < 0.01) { movePercentage = 0; }
     interval = setInterval(() => {
@@ -95,14 +79,7 @@ function start() {
 }
 
 function pause() {
-    pauseBtn.setAttribute(      'disabled', '');
-    startBtn.removeAttribute(   'disabled');
-    roundBtn.removeAttribute(   'disabled');
-    selector.removeAttribute(   'disabled');
-    checkTrace.removeAttribute( 'disabled');
-    checkLine.removeAttribute(  'disabled');
-    checkPoint.removeAttribute( 'disabled');
-    rangeInp.removeAttribute(   'disabled');
+    flipDisabledState();
     clearInterval(interval);
     autoRestart = false;
 }
@@ -135,6 +112,30 @@ function calculateNextPosition(toCalculate, parent) {
         } else {
             toCalculate[i].y = parent[i].y - Math.abs(parent[i].y - parent[i + 1].y) * movePercentage;
         }
+    }
+}
+
+function flipDisabledState(reset) {
+    if (startBtn.hasAttribute('disabled') || reset) {
+        startBtn.removeAttribute(   'disabled');
+        roundBtn.removeAttribute(   'disabled');
+        selector.removeAttribute(   'disabled');
+        checkTrace.removeAttribute( 'disabled');
+        checkLine.removeAttribute(  'disabled');
+        checkPoint.removeAttribute( 'disabled');
+        rangeInp.removeAttribute(   'disabled')
+
+        pauseBtn.setAttribute(      'disabled', '');
+    } else {
+        startBtn.setAttribute(   'disabled', '');
+        roundBtn.setAttribute(   'disabled', '');
+        selector.setAttribute(   'disabled', '');
+        checkTrace.setAttribute( 'disabled', '');
+        checkLine.setAttribute(  'disabled', '');
+        checkPoint.setAttribute( 'disabled', '');
+        rangeInp.setAttribute(   'disabled', '');
+
+        pauseBtn.removeAttribute('disabled');
     }
 }
 
