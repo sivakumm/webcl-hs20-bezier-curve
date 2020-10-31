@@ -14,7 +14,7 @@ window.onresize = () => { canvas.width = document.querySelector('.col').offsetWi
 const ctx = canvas.getContext('2d');
 ctx.lineWidth = 2;
 
-function createPoint(point, color) {
+function drawPoint(point, color) {
     ctx.beginPath();
     ctx.ellipse(point.x, point.y, 5, 5, 0, 0, 2 * Math.PI);
     ctx.fillStyle = color;
@@ -44,7 +44,7 @@ function renderCanvas() {
     }
     
     for (const point of framePoints) {
-        createPoint(point, FRAMEPOINT_COLOR);
+        drawPoint(point, FRAMEPOINT_COLOR);
     }
 
     const selectorValue = Number(selector.value);
@@ -52,7 +52,7 @@ function renderCanvas() {
         let drawColor = FIRST_COLOR;
         if (selectorValue === 1) { drawColor = BEZIER_COLOR; }
 
-        if (checkPoint.checked || selectorValue === 1) { createPoint(linearPoints[i], drawColor); }
+        if (checkPoint.checked || selectorValue === 1) { drawPoint(linearPoints[i], drawColor); }
 
         if (i > 0) {
             if (checkLine.checked) { drawLine(linearPoints[i - 1], linearPoints[i], drawColor); }
@@ -63,14 +63,14 @@ function renderCanvas() {
         let drawColor = SECOND_COLOR;
         if (selectorValue === 2) { drawColor = BEZIER_COLOR; }
 
-        if (checkPoint.checked || selectorValue === 2) { createPoint(quadraticPoints[i], drawColor); }
+        if (checkPoint.checked || selectorValue === 2) { drawPoint(quadraticPoints[i], drawColor); }
         if (i > 0) {
             if (checkLine.checked) { drawLine(quadraticPoints[i - 1], quadraticPoints[i], drawColor); }
         }
     }
 
     for (let i = 0; i < (selectorValue - 2); i++) {
-        createPoint(cubicPoints[i], BEZIER_COLOR);
+        drawPoint(cubicPoints[i], BEZIER_COLOR);
         if (i > 0) {
             drawLine(cubicPoints[i - 1], cubicPoints[i], BEZIER_COLOR);
         }
