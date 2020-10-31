@@ -25,7 +25,7 @@ Das Tool ist hauptsächlich in drei Dateien aufgegliedert:
 - [controller.js](/controller.js) -  Dieses Script reagiert auf Interaktionen vom Benutzer & berechnet die nächsten Schritte
 - [drawer.js](./drawer.js) - Dieses Script ist für die Darstellung des Canvas zuständig
 
-Zusätzlich wurde im Verzeichnis [lib](./lib) die CSS von Bootstrap abgelegt für ein minimales Styling des Tools.
+Zusätzlich wurde im Verzeichnis [lib](./lib) die CSS von Bootstrap und im Verzeichnis [icons](./icons) SVGs abgelegt für ein minimales Styling des Tools.
 
 ## Erklärung
 Das Grundkonzept bei den Bezier Kurven ist, dass ein Punkt von einem Startpunkt zum Zielpunkt gezeichnet wird. Die so 
@@ -56,4 +56,5 @@ Alle Punkte starten bei `t = 0` bei ihren Startpunkten und sind am Ziel bei `t =
 
 
 ## Rechte
+This tool uses Icons for buttons from [Font Awesome](https://fontawesome.com) and the favicon is downloaded from [Free SVG](https://freesvg.org/). \
 ![CC BY-SA](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg) Mithusan Sivakumar, FHNW
