@@ -102,17 +102,8 @@ function setNextPointPosition() {
 
 function calculateNextPosition(toCalculate, parent) {
     for(let i = 0; i < toCalculate.length; i++) {
-        if (parent[i].x < parent[i + 1].x) {
-            toCalculate[i].x = parent[i].x + Math.abs(parent[i].x - parent[i + 1].x) * movePercentage;
-        } else {
-            toCalculate[i].x = parent[i].x - Math.abs(parent[i].x - parent[i + 1].x) * movePercentage;
-        }
-
-        if (parent[i].y < parent[i + 1].y) {
-            toCalculate[i].y = parent[i].y + Math.abs(parent[i].y - parent[i + 1].y) * movePercentage;
-        } else {
-            toCalculate[i].y = parent[i].y - Math.abs(parent[i].y - parent[i + 1].y) * movePercentage;
-        }
+        toCalculate[i].x = ( (1 - movePercentage) * parent[i].x ) + ( movePercentage * parent[i + 1].x );
+        toCalculate[i].y = ( (1 - movePercentage) * parent[i].y ) + ( movePercentage * parent[i + 1].y );
     }
 }
 
