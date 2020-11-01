@@ -18,6 +18,8 @@ checkPoint.onchange = () => renderCanvas();
 rangeInp.oninput    = () => { movePercentage = Number(rangeInp.value); setNextPointPosition(); renderCanvas(); };
 selector.onchange   = () => renderCanvas();
 
+const disableElements = [startBtn, roundBtn, checkTrace, checkLine, checkPoint, rangeInp, selector];
+
 // initial fix points
 const framePointsLocations = [
     { x: 100, y: 250 },
@@ -109,24 +111,10 @@ function calculateNextPosition(toCalculate, parent) {
 
 function flipDisabledState(reset) {
     if (startBtn.hasAttribute('disabled') || reset) {
-        startBtn.removeAttribute(   'disabled');
-        roundBtn.removeAttribute(   'disabled');
-        selector.removeAttribute(   'disabled');
-        checkTrace.removeAttribute( 'disabled');
-        checkLine.removeAttribute(  'disabled');
-        checkPoint.removeAttribute( 'disabled');
-        rangeInp.removeAttribute(   'disabled')
-
-        pauseBtn.setAttribute(      'disabled', '');
+        disableElements.forEach(elem => elem.removeAttribute('disabled'));
+        pauseBtn.setAttribute('disabled', '');
     } else {
-        startBtn.setAttribute(   'disabled', '');
-        roundBtn.setAttribute(   'disabled', '');
-        selector.setAttribute(   'disabled', '');
-        checkTrace.setAttribute( 'disabled', '');
-        checkLine.setAttribute(  'disabled', '');
-        checkPoint.setAttribute( 'disabled', '');
-        rangeInp.setAttribute(   'disabled', '');
-
+        disableElements.forEach(elem => elem.setAttribute('disabled', ''));
         pauseBtn.removeAttribute('disabled');
     }
 }
